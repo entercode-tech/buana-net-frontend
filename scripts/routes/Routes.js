@@ -28,6 +28,10 @@ const Routes = [
     path: base + "mikrotik/index.html",
     middleware: [AuthMiddleware],
   },
+  {
+    path: base + "entercode/membership.php",
+    middleware: [AuthMiddleware],
+  },
 ];
 
 myconsole(base + "/login/");

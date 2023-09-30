@@ -10,6 +10,8 @@ function CallModalChangeProfileShow() {
   document.querySelector("#myChangeProfile").style.display = "block";
   document.querySelector("#profile-name").value =
     document.querySelector("#your-name").innerHTML;
+    document.querySelector("#memebrship_status").innerHTML;
+    document.querySelector("#membership_expire").innerHTML;
   document.querySelector("#profile-url").value =
     document.querySelector("#myavatar").src;
 }

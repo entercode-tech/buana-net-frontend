@@ -10,49 +10,49 @@
 var myconsole = console.log;
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyAVAJkbUGmPHogF_WJRa3vxZ2YuKDsvqns",
-  authDomain: "buananetpbun-5d979.firebaseapp.com",
-  databaseURL:
-    "https://buananetpbun-5d979-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "buananetpbun-5d979",
-  storageBucket: "buananetpbun-5d979.appspot.com",
-  messagingSenderId: "912166778245",
-  appId: "1:912166778245:web:c845ec7e720f7bd84580ec",
-  measurementId: "G-FSDV7HGD99",
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// var firebaseConfig = {
+//   apiKey: "AIzaSyAVAJkbUGmPHogF_WJRa3vxZ2YuKDsvqns",
+//   authDomain: "buananetpbun-5d979.firebaseapp.com",
+//   databaseURL:
+//     "https://buananetpbun-5d979-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "buananetpbun-5d979",
+//   storageBucket: "buananetpbun-5d979.appspot.com",
+//   messagingSenderId: "912166778245",
+//   appId: "1:912166778245:web:c845ec7e720f7bd84580ec",
+//   measurementId: "G-FSDV7HGD99",
+// };
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
 
-//invokes firebase authentication.
-const auth = firebase.auth();
+// //invokes firebase authentication.
+// const auth = firebase.auth();
 
-const user = firebase.auth().currentUser;
+// const user = firebase.auth().currentUser;
 
-const provider = new firebase.auth.GoogleAuthProvider();
+// const provider = new firebase.auth.GoogleAuthProvider();
 
-document.querySelector("#google-sign-in").addEventListener("click", () => {
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then(function (result) {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      // ...
-    })
-    .catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-    });
-});
+// document.querySelector("#google-sign-in").addEventListener("click", () => {
+//   firebase
+//     .auth()
+//     .signInWithPopup(provider)
+//     .then(function (result) {
+//       // This gives you a Google Access Token. You can use it to access the Google API.
+//       var token = result.credential.accessToken;
+//       // The signed-in user info.
+//       var user = result.user;
+//       // ...
+//     })
+//     .catch(function (error) {
+//       // Handle Errors here.
+//       var errorCode = error.code;
+//       var errorMessage = error.message;
+//       // The email of the user's account used.
+//       var email = error.email;
+//       // The firebase.auth.AuthCredential type that was used.
+//       var credential = error.credential;
+//       // ...
+//     });
+// });
 
 var code_signin;
 
@@ -344,6 +344,8 @@ async function UIProfile() {
   document.querySelector("#welcome-email").innerHTML = userAuth.email;
   document.querySelector("#profile-email").innerHTML = userAuth.email;
   document.querySelector("#your-name").innerHTML = userAuth.name;
+  document.querySelector("#membership_status").innerHTML = userAuth.membership ? userAuth.membership.status : '-';
+  document.querySelector("#membership_expire").innerHTML = userAuth.membership ? userAuth.membership.expire_date : '-';
   document.querySelector("#myavatar").src = userAuth?.photo_url;
 
   if (userAuth?.photo_url == null) {
