@@ -344,6 +344,7 @@ async function UIProfile() {
   document.querySelector("#welcome-email").innerHTML = userAuth.email;
   document.querySelector("#profile-email").innerHTML = userAuth.email;
   document.querySelector("#your-name").innerHTML = userAuth.name;
+  document.querySelector("#membership_package").innerHTML = userAuth.membership ? userAuth.membership.package.name : '-';
   document.querySelector("#membership_status").innerHTML = userAuth.membership ? userAuth.membership.status : '-';
   document.querySelector("#membership_expire").innerHTML = userAuth.membership ? userAuth.membership.expire_date : '-';
   document.querySelector("#myavatar").src = userAuth?.photo_url;

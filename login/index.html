@@ -80,6 +80,10 @@
         <span style="font-weight:bold; font-size:13px">YOUR NAME <span
             style="margin-left:45px;margin-right:6px">:</span><span style="color:#ff6600;font-weight:bold;"
             id="your-name"></span></span><br><br>
+        <span style="font-weight:bold; font-size:13px">MEMBERSHIP PACKAGE <span
+            style="margin-left:45px;margin-right:6px">:</span><span
+            style="color:#ff6600;font-weight:bold; text-transform: capitalize;"
+            id="membership_package"></span></span><br><br>
         <span style="font-weight:bold; font-size:13px">MEMBERSHIP STATUS <span
             style="margin-left:45px;margin-right:6px">:</span><span
             style="color:#ff6600;font-weight:bold; text-transform: capitalize;"
@@ -257,6 +261,7 @@
       section.css('display', 'block')
     }
     async function subs(id) {
+      if (confirm('Are you sure you want to change/buy a subscription package?')) {
         let req = new RequestAPI()
         let header = window.auth.getHeaderAuthorization()
         let response = await req.postData('/membership/payment', {
@@ -268,6 +273,7 @@
           alert('terjadi masalah')
         }
       }
+    }
 
     $(document).ready(function () {
       async function get_membership_package() {
