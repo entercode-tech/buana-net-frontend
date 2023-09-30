@@ -314,7 +314,7 @@ const login = async () => {
       let user = new User({ email, password });
       try {
         await user.login();
-        await showTheUIIfLogined();
+        location.reload()
       } catch (error) {
         Alert.render("❌ " + error.message);
         // myconsole(error)

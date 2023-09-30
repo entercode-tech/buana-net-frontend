@@ -2,11 +2,11 @@ let base = config.baseUrl;
 const Routes = [
   {
     path: base,
-    middleware: [AuthMiddleware, MembershipMiddleware],
+    middleware: [AuthMiddleware],
   },
   {
     path: base + "index.html",
-    middleware: [AuthMiddleware, MembershipMiddleware],
+    middleware: [AuthMiddleware],
   },
   {
     path: base + "login/",
@@ -22,7 +22,7 @@ const Routes = [
   },
   {
     path: base + "mikrotik",
-    middleware: [AuthMiddleware],
+    middleware: [AuthMiddleware,MembershipMiddleware],
   },
   {
     path: base + "mikrotik/index.html",
