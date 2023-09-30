@@ -31,18 +31,21 @@ class Auth {
   }
   async user() {
     let response;
-    try {
-      response = await this.request.postData(
-        "/get-profile", {}, {
-          Authorization: `Bearer ${this.getToken()}`,
-        }
-      );
-      // myconsole(response);
-      return new User(response);
-    } catch (error) {
-      //   myconsole(error);
+
+    response = await this.request.postData(
+      "/get-profile",
+      {},
+      {
+        Authorization: `Bearer ${this.getToken()}`,
+      }
+    );
+
+    if (response.message == "Unauthenticated.") {
       this.logout();
+      return;
     }
+    // myconsole(response);
+    return new User(response);
   }
 
   getHeaderAuthorization() {
