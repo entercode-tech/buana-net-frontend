@@ -1,30 +1,31 @@
+let base = config.baseUrl
 const Routes = [
   {
-    path: "/",
+    path: base,
     middleware: [AuthMiddleware, MembershipMiddleware],
   },
   {
-    path: "/index.html",
+    path: base+"/index.html",
     middleware: [AuthMiddleware, MembershipMiddleware],
   },
   {
-    path: "/login/",
-    middleware: AuthMiddleware,
+    path: base+"/login/",
+    middleware: [AuthMiddleware],
   },
   {
-    path: "/login",
-    middleware: AuthMiddleware,
+    path: base+"/login",
+    middleware: [AuthMiddleware],
   },
   {
-    path: "/login/index.html",
-    middleware: AuthMiddleware,
+    path: base+"/login/index.html",
+    middleware: [AuthMiddleware],
   },
   {
-    path: "/mikrotik",
-    middleware: AuthMiddleware,
+    path: base+"/mikrotik",
+    middleware: [AuthMiddleware],
   },
   {
-    path: "/mikrotik/index.html",
-    middleware: AuthMiddleware,
+    path: base+"/mikrotik/index.html",
+    middleware: [AuthMiddleware],
   },
 ];

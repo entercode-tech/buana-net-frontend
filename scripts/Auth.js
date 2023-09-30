@@ -33,13 +33,11 @@ class Auth {
     let response;
     try {
       response = await this.request.postData(
-        "/get-profile",
-        {},
-        {
+        "/get-profile", {}, {
           Authorization: `Bearer ${this.getToken()}`,
         }
       );
-
+      // myconsole(response);
       return new User(response);
     } catch (error) {
       //   myconsole(error);
