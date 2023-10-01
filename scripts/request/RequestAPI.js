@@ -23,9 +23,9 @@ class RequestAPI {
 
     if (response.status !== 200) {
       if (res.message) {
-        alert(res.message);
+        Alert.render("❌ " + res.message);
       } else {
-        alert('Error: ' + response.status + ' ' + response.statusText);
+        Alert.render("❌ " + response.status + ' ' + response.statusText);
       }
     } else {
       return res
@@ -52,9 +52,9 @@ class RequestAPI {
 
     if (response.status !== 200) {
       if (res.message) {
-        alert(res.message);
+        Alert.render("❌ " + res.message);
       } else {
-        alert('Error: ' + response.status + ' ' + response.statusText);
+        Alert.render("❌ " + response.status + ' ' + response.statusText);
       }
     } else {
       return res

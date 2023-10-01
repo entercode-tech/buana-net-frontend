@@ -19,7 +19,7 @@ class Auth {
   }
   async login(credentials) {
     let response = await this.request.postData("/login", credentials);
-
+    
     if (response.status) {
       this.setToken(response.data.token);
       return true;

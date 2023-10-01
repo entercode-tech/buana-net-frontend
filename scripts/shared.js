@@ -274,7 +274,7 @@ const register = async () => {
 
         await showTheUIIfLogined();
       } catch (error) {
-        Alert.render("❌ " + error.message);
+        // Alert.render("❌ " + error.message);
         // myconsole(error)
       }
     } else {
@@ -316,8 +316,7 @@ const login = async () => {
         await user.login();
         location.reload()
       } catch (error) {
-        Alert.render("❌ " + error.message);
-        // myconsole(error)
+        // Alert.render("❌ " + error.message);
       }
     } else {
       Alert.render("❌ Invalid Captcha. try Again");

@@ -304,26 +304,26 @@ document.querySelector("#google-sign-in").addEventListener("click", () => {
 });
 
 
-document.querySelector("#verify").addEventListener("click", () => {
-  var actionCodeSettings = {
-    // After email is verified, the user will be give the ability to go back
-    // to the sign-in page.
-    url: 'https://buananetpbun.github.io/',
-    handleCodeInApp: false
-  };
-  firebase.auth().currentUser.sendEmailVerification(actionCodeSettings)
-    .then(function () {
-      // Verification email sent.
-      Alert.render("✔️ Verification link sent to your email. if you don't see it, please check your mail inbox in spam folder.")
-    })
-    .catch(function (error) {
-      // Error occurred. Inspect error.code.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      Alert.render('❌ ' + errorMessage);
-    });
+// document.querySelector("#verify").addEventListener("click", () => {
+//   var actionCodeSettings = {
+//     // After email is verified, the user will be give the ability to go back
+//     // to the sign-in page.
+//     url: 'https://buananetpbun.github.io/',
+//     handleCodeInApp: false
+//   };
+//   firebase.auth().currentUser.sendEmailVerification(actionCodeSettings)
+//     .then(function () {
+//       // Verification email sent.
+//       Alert.render("✔️ Verification link sent to your email. if you don't see it, please check your mail inbox in spam folder.")
+//     })
+//     .catch(function (error) {
+//       // Error occurred. Inspect error.code.
+//       var errorCode = error.code;
+//       var errorMessage = error.message;
+//       Alert.render('❌ ' + errorMessage);
+//     });
 
-});
+// });
 
 
 var myTimer;
@@ -333,55 +333,55 @@ function myInterval() {
 }
 
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    const uid = user.uid;
-    const email = user.email;
-    const emailVerified = user.emailVerified;
+// firebase.auth().onAuthStateChanged((user) => {
+//   if (user) {
+//     // User is signed in, see docs for a list of available properties
+//     // https://firebase.google.com/docs/reference/js/firebase.User
+//     const uid = user.uid;
+//     const email = user.email;
+//     const emailVerified = user.emailVerified;
 
-    document.querySelector('#welcome-email').innerHTML = email
-    document.querySelector('#myavatar').src = firebase.auth().currentUser.photoURL;
+//     document.querySelector('#welcome-email').innerHTML = email
+//     document.querySelector('#myavatar').src = firebase.auth().currentUser.photoURL;
 	
     
 
 
-if (firebase.auth().currentUser.photoURL == null) {
-document.querySelector('#myavatar').src = "https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png";
-}
+// if (firebase.auth().currentUser.photoURL == null) {
+// document.querySelector('#myavatar').src = "https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png";
+// }
 
-    clearInterval(myTimer)
+//     clearInterval(myTimer)
 
 
-    if (emailVerified == true) {
-      document.querySelector('#verify').style.display = "none"
-      document.querySelector('#email_Verified').innerHTML = "✔️"
-      document.querySelector('#myLockScreen').style.display = "none";
-      document.querySelector('#myModal').style.display = "block";
-    } else {
-      document.querySelector('#email_Verified').innerHTML = "❌"
-      document.querySelector('#myLockScreen').style.display = "block";
-      document.querySelector('#myModal').style.display = "none";
-    }
+//     if (emailVerified == true) {
+//       document.querySelector('#verify').style.display = "none"
+//       document.querySelector('#email_Verified').innerHTML = "✔️"
+//       document.querySelector('#myLockScreen').style.display = "none";
+//       document.querySelector('#myModal').style.display = "block";
+//     } else {
+//       document.querySelector('#email_Verified').innerHTML = "❌"
+//       document.querySelector('#myLockScreen').style.display = "block";
+//       document.querySelector('#myModal').style.display = "none";
+//     }
 
-  } else {
+//   } else {
 
-    document.querySelector("#myLogin").style.display = "block";
+//     document.querySelector("#myLogin").style.display = "block";
 
-    var timeleft = 180;
-    var downloadTimer = setInterval(function () {
-      if (timeleft <= 0) {
-        clearInterval(downloadTimer);
-      } else {
-        document.getElementById("countdown").innerHTML = "Reload Page in " + timeleft + " seconds";
-      }
-      timeleft -= 1;
-    }, 1000);
+//     var timeleft = 180;
+//     var downloadTimer = setInterval(function () {
+//       if (timeleft <= 0) {
+//         clearInterval(downloadTimer);
+//       } else {
+//         document.getElementById("countdown").innerHTML = "Reload Page in " + timeleft + " seconds";
+//       }
+//       timeleft -= 1;
+//     }, 1000);
 
-    myTimer = setInterval(myInterval, 180000)
-  }
-});
+//     myTimer = setInterval(myInterval, 180000)
+//   }
+// });
 
 
 document.querySelector("#show-register").addEventListener("click", () => {
@@ -508,20 +508,20 @@ document
     }
   });
 
-const authenticate = (email, password) => {
-  const auth = firebase.auth();
-  auth.signInWithEmailAndPassword(email, password);
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+// const authenticate = (email, password) => {
+//   const auth = firebase.auth();
+//   auth.signInWithEmailAndPassword(email, password);
+//   firebase
+//     .auth()
+//     .signInWithEmailAndPassword(email, password)
+//     .catch(function (error) {
+//       // Handle Errors here.
+//       var errorCode = error.code;
+//       var errorMessage = error.message;
 
-      Alert.render('❌ ' + errorMessage);
-    });
-};
+//       Alert.render('❌ ' + errorMessage);
+//     });
+// };
 
 const showHomepage = () => {
   document.querySelector("#registration-page").classList.add("hide");
