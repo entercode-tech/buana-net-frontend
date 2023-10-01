@@ -9,14 +9,27 @@ class RequestAPI {
       // 'Content-Type': 'application/x-www-form-urlencoded',
     };
 
-    header = { ...header, ...headerParams };
+    header = {
+      ...header,
+      ...headerParams
+    };
     const response = await fetch(this.baseUrl + url, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       headers: header,
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
 
-    return await response.json(); // parses JSON response into native JavaScript objects
+    let res = await response.json()
+
+    if (response.status !== 200) {
+      if (res.message) {
+        alert(res.message);
+      } else {
+        alert('Error: ' + response.status + ' ' + response.statusText);
+      }
+    } else {
+      return res
+    }
   }
 
   async getData(url = "", data = {}, headerParams = {}) {
@@ -25,12 +38,27 @@ class RequestAPI {
       // 'Content-Type': 'application/x-www-form-urlencoded',
     };
 
-    header = { ...header, ...headerParams };
+    header = {
+      ...header,
+      ...headerParams
+    };
     // Default options are marked with *
     const response = await fetch(this.baseUrl + url, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
       headers: header, // body data type must match "Content-Type" header
     });
-    return await response.json(); // parses JSON response into native JavaScript objects
+
+    let res = await response.json()
+
+    if (response.status !== 200) {
+      if (res.message) {
+        alert(res.message);
+      } else {
+        alert('Error: ' + response.status + ' ' + response.statusText);
+      }
+    } else {
+      return res
+    }
+
   }
 }
