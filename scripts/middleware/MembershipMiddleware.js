@@ -12,7 +12,11 @@ class MembershipMiddleware {
     }
 
     if (!user.membership) {
-      alert("belum subscribe");
+      if (confirm('Select a subscription package')) {
+        window.location.href= config.baseUrl+'login/'
+      }else{
+        window.location.href= config.baseUrl
+      }
     } else {
       switch (user.membership.status) {
         case "pending":

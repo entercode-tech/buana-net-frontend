@@ -33,5 +33,3 @@ const Routes = [
     middleware: [AuthMiddleware],
   },
 ];
-
-myconsole(base + "/login/");

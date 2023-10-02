@@ -12,7 +12,7 @@ class App {
   start() {
     this.registerCurrentPath();
     this.registerRoutes();
-    console.log("start the app");
+    // console.log("start the app");
 
     this.#registeredRoutes.forEach((element) => {
       //   console.log(this.#currentPath);
