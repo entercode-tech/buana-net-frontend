@@ -158,28 +158,6 @@ window.onclick = function (event) {
   }
 };
 document.querySelector("#verify").addEventListener("click", async () => {
-  // var actionCodeSettings = {
-  //   // After email is verified, the user will be give the ability to go back
-  //   // to the sign-in page.
-  //   url: "https://buananetpbun.github.io/",
-  //   handleCodeInApp: false,
-  // };
-
-  // firebase
-  //   .auth()
-  //   .currentUser.sendEmailVerification(actionCodeSettings)
-  //   .then(function () {
-  //     // Verification email sent.
-  //     Alert.render(
-  //       "✔️ Verification link sent to your email. if you don't see it, please check your mail inbox in spam folder."
-  //     );
-  //   })
-  //   .catch(function (error) {
-  //     // Error occurred. Inspect error.code.
-  //     var errorCode = error.code;
-  //     var errorMessage = error.message;
-  //     Alert.render("❌ " + errorMessage);
-  //   });
 
   let user = await window.auth.user();
 
@@ -240,14 +218,6 @@ const register = async () => {
     event.preventDefault();
 
     if (document.getElementById("cpatchaTextBoxSignUp").value == code_signup) {
-      // alert("Valid Captcha")
-      // auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // 	// Handle Errors here.
-      // 	var errorCode = error.code;
-      // 	var errorMessage = error.message;
-      // 	Alert.render('❌ ' + errorMessage);
-      // 	// ...
-      // });
       let user = new User({ email, password });
       try {
         await user.register();
@@ -327,12 +297,7 @@ async function UIProfile() {
   document.querySelector("#membership_package").innerHTML = userAuth.membership ? userAuth.membership.package.name : '-';
   document.querySelector("#membership_status").innerHTML = userAuth.membership ? userAuth.membership.status : '-';
   document.querySelector("#membership_expire").innerHTML = userAuth.membership ? userAuth.membership.expire_date : '-';
-  document.querySelector("#myavatar").src = userAuth?.photo_url;
-
-  if (userAuth?.photo_url == null) {
-    document.querySelector("#myavatar").src =
-      "https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png";
-  }
+  document.querySelector("#myavatar").src = userAuth && userAuth.photo_url ? userAuth.photo_url : 'https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png';
 
   if (emailVerified) {
     document.querySelector("#verify").style.display = "none";
@@ -348,7 +313,7 @@ async function UIIndex() {
   let user = userAuth;
   let emailVerified = user?.email_verified_at;
   document.querySelector("#welcome-email").innerHTML = user?.email;
-  document.querySelector("#myavatar").src = user?.photo_url;
+  document.querySelector("#myavatar").src = user && user.photo_url ? user.photo_url : 'https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png';
 
   function setStyleProp(element, prop, val) {
     let elements = [];
@@ -356,11 +321,6 @@ async function UIIndex() {
     else if (typeof element === "object") elements = Object.values(element);
     elements.forEach((el) => (el.style[prop] = val));
     return elements;
-  }
-
-  if (user?.photoUR == null) {
-    document.querySelector("#myavatar").src =
-      "https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png";
   }
   if (emailVerified) {
     document.querySelector("#verify").style.display = "none";
@@ -636,24 +596,7 @@ function CustomConfirm() {
       Alert.render("❌ " + error);
     }
 
-    // const user = firebase.auth().currentUser;
-
-    // user
-    //   .delete()
-    //   .then(() => {
-    //     // User deleted.
-    //     Alert.render(
-    //       "✔️ Delete Member Accound successfully! Relogin Please Wait.."
-    //     );
-    //     setTimeout(signOut, 10000);
-    //   })
-    //   .catch((error) => {
-    //     // An error ocurred
-    //     // ...
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     Alert.render("❌ " + errorMessage);
-    //   });
+    
   };
   this.cancel = function () {
     document.querySelector("#dialogbox").style.display = "none";
