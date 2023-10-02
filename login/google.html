@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Google Login</title>
     <script src="https://accounts.google.com/gsi/client" async></script>
     <style>
-        body{
+        body {
             background-color: rgb(56, 56, 56);
             display: flex;
             justify-content: center;
@@ -15,6 +15,7 @@
             height: 100vh;
             background: #292929 url(https://user-images.githubusercontent.com/42666125/147363663-30767ef4-09af-48d6-8ea1-ee7a1c09e90f.png) no-repeat
         }
+
         .d-none {
             /* opacity: 0; */
         }
@@ -32,9 +33,18 @@
             data-text="signin_with" data-size="large" data-logo_alignment="left">
         </div>
     </div>
+    <script src="../scripts/shared.js"></script>
+    <script src="../scripts/config/config.js"></script>
+    <script src="../scripts/request/RequestAPI.js"></script>
+    <script src="../scripts/Auth.js"></script>
+    <script src="../scripts/middleware/AuthMiddleware.js"></script>
+    <script src="../scripts/middleware/MembershipMiddleware.js"></script>
+    <script src="../scripts/model/User.js"></script>
+    <script src="../scripts/routes/Routes.js"></script>
+    <script src="../scripts/App.js"></script>
     <script>
         function handleCredentialResponse(response) {
-            fetch("auth_init.php", {
+            fetch(config.endpointAPI + '/sign-in-with-google', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -46,7 +56,9 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    window.auth.setToken(data.data.token)
+                    
+                    window.location.href = 'index.html'
                 })
                 .catch(console.error);
         }

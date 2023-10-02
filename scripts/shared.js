@@ -10,26 +10,26 @@
 var myconsole = console.log;
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "AIzaSyAVAJkbUGmPHogF_WJRa3vxZ2YuKDsvqns",
-  authDomain: "buananetpbun-5d979.firebaseapp.com",
-  databaseURL:
-    "https://buananetpbun-5d979-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "buananetpbun-5d979",
-  storageBucket: "buananetpbun-5d979.appspot.com",
-  messagingSenderId: "912166778245",
-  appId: "1:912166778245:web:c845ec7e720f7bd84580ec",
-  measurementId: "G-FSDV7HGD99",
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+// var firebaseConfig = {
+//   apiKey: "AIzaSyAVAJkbUGmPHogF_WJRa3vxZ2YuKDsvqns",
+//   authDomain: "buananetpbun-5d979.firebaseapp.com",
+//   databaseURL:
+//     "https://buananetpbun-5d979-default-rtdb.asia-southeast1.firebasedatabase.app",
+//   projectId: "buananetpbun-5d979",
+//   storageBucket: "buananetpbun-5d979.appspot.com",
+//   messagingSenderId: "912166778245",
+//   appId: "1:912166778245:web:c845ec7e720f7bd84580ec",
+//   measurementId: "G-FSDV7HGD99",
+// };
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
 
-//invokes firebase authentication.
-const auth = firebase.auth();
+// //invokes firebase authentication.
+// const auth = firebase.auth();
 
-const user = firebase.auth().currentUser;
+// const user = firebase.auth().currentUser;
 
-const provider = new firebase.auth.GoogleAuthProvider();
+// const provider = new firebase.auth.GoogleAuthProvider();
 
 document.querySelector("#google-sign-in").addEventListener("click", () => {
   window.location.href='../login/google.html'
