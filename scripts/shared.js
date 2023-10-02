@@ -631,7 +631,7 @@ function CustomConfirm() {
       Alert.render(
         "✔️ Delete Member Accound successfully! Relogin Please Wait.."
       );
-      setTimeout(signOut, 10000);
+      setTimeout(signOut, 3000);
     } catch (error) {
       Alert.render("❌ " + error);
     }
