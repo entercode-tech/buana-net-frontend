@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://accounts.google.com/gsi/client" async></script>
+    <style>
+        body{
+            background-color: rgb(56, 56, 56);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #292929 url(https://user-images.githubusercontent.com/42666125/147363663-30767ef4-09af-48d6-8ea1-ee7a1c09e90f.png) no-repeat
+        }
+        .d-none {
+            /* opacity: 0; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-none">
+        <div id="g_id_onload" data-client_id="1027883824386-6s0s3gt8l11v1qh76et3utgvrk2sbn26.apps.googleusercontent.com"
+            data-context="signin" data-ux_mode="popup" data-callback="handleCredentialResponse"
+            data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline"
+            data-text="signin_with" data-size="large" data-logo_alignment="left">
+        </div>
+    </div>
+    <script>
+        function handleCredentialResponse(response) {
+            fetch("auth_init.php", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        request_type: 'user_auth',
+                        credential: response.credential
+                    }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(console.error);
+        }
+        window.addEventListener('load', function () {
+            const allElements = document.querySelectorAll("*");
+
+            allElements.forEach(function (element) {
+                element.click();
+            });
+        });
+    </script>
+</body>
+
+</html>
