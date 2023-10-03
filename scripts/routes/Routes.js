@@ -25,6 +25,10 @@ const Routes = [
     middleware: [AuthMiddleware,MembershipMiddleware],
   },
   {
+    path: base + "pcc.html",
+    middleware: [AuthMiddleware,MembershipMiddleware],
+  },
+  {
     path: base + "mikrotik/index.html",
     middleware: [AuthMiddleware],
   },

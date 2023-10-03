@@ -2,7 +2,7 @@ class RequestAPI {
   constructor() {
     this.baseUrl = config.endpointAPI;
   }
-  async postData(url = "", data = {}, headerParams = {}) {
+  async postData(url = "", data = {}, headerParams = {}, redir_error = null) {
     // Default options are marked with *
     let header = {
       "Content-Type": "application/json",
@@ -23,16 +23,26 @@ class RequestAPI {
 
     if (response.status !== 200) {
       if (res.message) {
-        Alert.render("❌ " + res.message);
+        if (redir_error) {
+          alert(res.message)
+          window.location.href = redir_error
+        }else{
+          Alert.render("❌ " + res.message);
+        }
       } else {
-        Alert.render("❌ " + response.status + ' ' + response.statusText);
+        if (redir_error) {
+          alert(response.status + ' ' + response.statusText)
+          window.location.href = redir_error
+        }else{
+           Alert.render("❌ " + response.status + ' ' + response.statusText);
+        }
       }
     } else {
       return res
     }
   }
 
-  async getData(url = "", data = {}, headerParams = {}) {
+  async getData(url = "", data = {}, headerParams = {},redir_error = null) {
     let header = {
       "Content-Type": "application/json",
       // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -52,9 +62,19 @@ class RequestAPI {
 
     if (response.status !== 200) {
       if (res.message) {
-        Alert.render("❌ " + res.message);
+        if (redir_error) {
+          alert(res.message)
+          window.location.href = redir_error
+        }else{
+          Alert.render("❌ " + res.message);
+        }
       } else {
-        Alert.render("❌ " + response.status + ' ' + response.statusText);
+        if (redir_error) {
+          alert(response.status + ' ' + response.statusText)
+          window.location.href = redir_error
+        }else{
+           Alert.render("❌ " + response.status + ' ' + response.statusText);
+        }
       }
     } else {
       return res

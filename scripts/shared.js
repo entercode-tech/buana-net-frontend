@@ -32,7 +32,7 @@ var myconsole = console.log;
 // const provider = new firebase.auth.GoogleAuthProvider();
 
 document.querySelector("#google-sign-in").addEventListener("click", () => {
-  window.location.href='../login/google.html'
+  window.location.href = '../login/google.html'
 });
 
 var code_signin;
@@ -218,7 +218,10 @@ const register = async () => {
     event.preventDefault();
 
     if (document.getElementById("cpatchaTextBoxSignUp").value == code_signup) {
-      let user = new User({ email, password });
+      let user = new User({
+        email,
+        password
+      });
       try {
         await user.register();
         await user.login();
@@ -262,7 +265,10 @@ const login = async () => {
     if (document.getElementById("cpatchaTextBoxSignIn").value == code_signin) {
       // alert("Valid Captcha")
       // authenticate(email, password);
-      let user = new User({ email, password });
+      let user = new User({
+        email,
+        password
+      });
       try {
         await user.login();
         location.reload()
@@ -288,6 +294,15 @@ async function UIProfile() {
   let user = userAuth;
   let emailVerified = user?.email_verified_at;
 
+  var expire_date = '-'
+  if (userAuth.membership && userAuth.membership.expire_date) {
+    const dateTime = new Date(userAuth.membership.expire_date);
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const day = String(dateTime.getDate()).padStart(2, '0');
+    expire_date = `${year}-${month}-${day}`;
+  }
+
   document.querySelector("#myProfile").style.display = "block";
 
   document.querySelector("#user-id").innerHTML = userAuth.id;
@@ -296,7 +311,7 @@ async function UIProfile() {
   document.querySelector("#your-name").innerHTML = userAuth.name;
   document.querySelector("#membership_package").innerHTML = userAuth.membership ? userAuth.membership.package.name : '-';
   document.querySelector("#membership_status").innerHTML = userAuth.membership ? userAuth.membership.status : '-';
-  document.querySelector("#membership_expire").innerHTML = userAuth.membership ? userAuth.membership.expire_date : '-';
+  document.querySelector("#membership_expire").innerHTML = expire_date;
   document.querySelector("#myavatar").src = userAuth && userAuth.photo_url ? userAuth.photo_url : 'https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png';
 
   if (emailVerified) {
@@ -342,12 +357,8 @@ async function UIOther() {
   let emailVerified = user?.email_verified_at;
 
   document.querySelector("#welcome-email").innerHTML = user?.email;
-  document.querySelector("#myavatar").src = user?.photo_url;
+  document.querySelector("#myavatar").src = user && user.photo_url ? user.photo_url : 'https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png';;
 
-  if (user?.photoUR == null) {
-    document.querySelector("#myavatar").src =
-      "https://user-images.githubusercontent.com/42666125/199234814-c320e1fc-da95-489e-a955-43b82e3f4b46.png";
-  }
   let MylockS = document.querySelector("#myLockScreen");
   if (emailVerified) {
     document.querySelector("#verify").style.display = "none";
@@ -537,6 +548,7 @@ const forgotPassword = (email) => {
       Alert.render("❌ invalid e-mail or bad network connection.");
     });
 };
+
 function CustomAlert() {
   this.render = function (dialog) {
     var winW = window.innerWidth;
@@ -596,7 +608,7 @@ function CustomConfirm() {
       Alert.render("❌ " + error);
     }
 
-    
+
   };
   this.cancel = function () {
     document.querySelector("#dialogbox").style.display = "none";
