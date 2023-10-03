@@ -7,7 +7,11 @@ class MembershipMiddleware {
       let header = window.auth.getHeaderAuthorization();
       let response = await req.postData("/membership/renew", {}, header,config.baseUrl + 'login/');
       if (response.status == true) {
-        window.location.href = response.data;
+        if (confirm('Your subscription has expired, please extend it')) {
+          window.location.href = response.data;
+        }else{
+          window.location.href = config.baseUrl + 'login/';
+        }
       } else {
         window.location.href = config.baseUrl + 'login/';
       }
